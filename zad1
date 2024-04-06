@@ -80,3 +80,44 @@ def main():
 
 if __name__ == "__main__":
     main()
+def oblicz_srednia_ocen(oceny):
+    suma_ocen = sum(oceny)
+    ilosc_ocen = len(oceny)
+    if ilosc_ocen == 0:
+        return 0
+    srednia = suma_ocen / ilosc_ocen
+    return srednia
+
+def main():
+    przedmioty = ['matematyka', 'fizyka', 'chemia']
+    oceny = {przedmiot: [] for przedmiot in przedmioty}
+
+    while True:
+        print("Dostępne przedmioty:", przedmioty)
+        przedmiot = input("Podaj nazwę przedmiotu (lub 'koniec' aby zakończyć): ")
+        if przedmiot.lower() == 'koniec':
+            break
+        if przedmiot not in przedmioty:
+            print("Niepoprawna nazwa przedmiotu.")
+            continue
+
+        while True:
+            try:
+                ocena = float(input(f"Podaj ocenę z {przedmiot}: "))
+                if ocena < 2 or ocena > 6:
+                    print("Ocena musi być liczbą dodatnią mniejszą niż 6.")
+                    continue
+                oceny[przedmiot].append(ocena)
+                break
+            except ValueError:
+                print("Niepoprawny format oceny. Wprowadź liczbę.")
+
+    for przedmiot, lista_ocen in oceny.items():
+        print(f"\nOceny z przedmiotu {przedmiot}: {lista_ocen}")
+        suma = sum(lista_ocen)
+        print(f"Suma ocen: {suma}")
+        srednia = oblicz_srednia_ocen(lista_ocen)
+        print(f"Średnia ocen: {srednia}")
+
+if __name__ == "__main__":
+    main()
