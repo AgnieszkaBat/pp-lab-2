@@ -1,49 +1,28 @@
-def oblicz_srednia_ocen(oceny):
-    suma_ocen = sum(oceny)
-    ilosc_ocen = len(oceny)
-    srednia = suma_ocen / ilosc_ocen
-    return srednia
+import java.util.Scanner;
 
-def main():
-    przedmioty = ['matematyka', 'fizyka', 'chemia']
-    oceny = []
+public class ZarzadzanieOcenami {
 
-    for przedmiot in przedmioty:
-        ocena = float(input(f"Podaj ocenę z {przedmiot}: "))
-        oceny.append(ocena)
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-    srednia = oblicz_srednia_ocen(oceny)
-    print("Twoja średnia ocen to:", srednia)
+        System.out.print("Podaj imię ucznia: ");
+        String imieUcznia = scanner.nextLine();
 
-if __name__ == "__main__":
-    main()
-def oblicz_srednia_ocen(oceny):
-    suma_ocen = sum(oceny)
-    ilosc_ocen = len(oceny)
-    if ilosc_ocen == 0:
-        return 0
-    srednia = suma_ocen / ilosc_ocen
-    return srednia
+        System.out.print("Podaj liczbę przedmiotów: ");
+        int liczbaPrzedmiotow = scanner.nextInt();
 
-def main():
-    przedmioty = ['matematyka', 'fizyka', 'chemia']
-    oceny = {przedmiot: [] for przedmiot in przedmioty}
+        double sumaOcen = 0;
 
-    while True:
-        print("Dostępne przedmioty:", przedmioty)
-        przedmiot = input("Podaj nazwę przedmiotu (lub 'koniec' aby zakończyć): ")
-        if przedmiot.lower() == 'koniec':
-            break
-        if przedmiot not in przedmioty:
-            print("Niepoprawna nazwa przedmiotu.")
-            continue
+        for (int i = 1; i <= liczbaPrzedmiotow; i++) {
+            System.out.print("Podaj ocenę z przedmiotu " + i + ": ");
+            double ocena = scanner.nextDouble();
+            sumaOcen += ocena;
+        }
 
-        ocena = float(input(f"Podaj ocenę z {przedmiot}: "))
-        oceny[przedmiot].append(ocena)
+        double srednia = sumaOcen / liczbaPrzedmiotow;
 
-    for przedmiot, lista_ocen in oceny.items():
-        srednia = oblicz_srednia_ocen(lista_ocen)
-        print(f"Średnia ocen z {przedmiot}: {srednia}")
+        System.out.println("Średnia ocen ucznia " + imieUcznia + " wynosi: " + srednia);
 
-if __name__ == "__main__":
-    main()
+        scanner.close();
+    }
+}
